@@ -1,4 +1,8 @@
-/* --- Reset i Base Styles --- */
+/* ========== styles-final.css ========== */
+
+/* ------------------------------
+   BASE STYLES (Mobile-First)
+------------------------------ */
 * {
   margin: 0;
   padding: 0;
@@ -19,23 +23,14 @@ body {
   padding: 4vh 0;
 }
 
-h1, h2, h3 {
-  margin-bottom: 2vh;
-  font-weight: 600;
-}
-
 a {
   text-decoration: none;
   color: inherit;
-  transition: color 0.3s ease;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* --- Botons --- */
+/* ------------------------------
+   BUTTONS
+------------------------------ */
 .btn-primary {
   background-color: #5267df;
   color: #fff;
@@ -66,28 +61,34 @@ img {
   color: #5267df;
   padding: 0.8em 1.5em;
   border-radius: 6px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 .btn-outline:hover {
   background-color: #5267df;
   color: #fff;
 }
 
-/* --- Header i Navegació --- */
+/* ------------------------------
+   HEADER & NAVIGATION
+   - Mobile-first: hamburger visible, links hidden
+   - Desktop: links visible, hamburger hidden
+------------------------------ */
 .header {
   padding: 2vh 0;
   border-bottom: 1px solid #eee;
+  position: relative;
+  z-index: 1000;
 }
 
-.nav.container {
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  flex-wrap: wrap;
 }
 
 .hamburger {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
@@ -101,48 +102,52 @@ img {
 
 .nav-links {
   list-style: none;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 1vh 0;
+}
+.nav-links.show {
   display: flex;
-  gap: 2vh;
 }
 .nav-links li a {
-  display: block;
   padding: 1vh 0;
   font-weight: 500;
 }
 
-/* Responsive Menu */
-@media (max-width: 767px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #fff;
-    width: 100%;
-    text-align: center;
-    padding: 2vh 0;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    z-index: 999;
-  }
-  .nav-links.show {
-    display: flex;
-  }
-  .hamburger {
-    display: flex;
-  }
-}
+/* Desktop layout */
 @media (min-width: 768px) {
-  .hamburger { display: none; }
-  .nav-links { display: flex !important; flex-direction: row; position: static; background: none; box-shadow: none; padding: 0; }
+  .hamburger {
+    display: none;
+  }
+  .nav {
+    flex-wrap: nowrap;
+  }
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    padding: 0;
+  }
+  .nav-links li a {
+    margin: 0 1.5vh;
+  }
 }
 
-/* --- Hero Section --- */
-.hero.container {
+/* ------------------------------
+   HERO SECTION
+   - Image left/text right on desktop
+------------------------------ */
+.hero {
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
+  text-align: center;
   gap: 4vh;
 }
 .hero-text {
@@ -152,8 +157,9 @@ img {
   width: 100%;
   max-width: 500px;
 }
+
 @media (min-width: 768px) {
-  .hero.container {
+  .hero {
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
@@ -167,8 +173,11 @@ img {
   }
 }
 
-/* --- Features Section --- */
-.features.container {
+/* ------------------------------
+   FEATURES SECTION
+   - Preserve original left/right image structure
+------------------------------ */
+.features {
   text-align: center;
 }
 .feature-tabs {
@@ -176,18 +185,17 @@ img {
   justify-content: center;
   gap: 2vh;
   margin: 4vh 0;
-  flex-wrap: wrap;
 }
 .feature-tabs button {
+  background: none;
   border: none;
-  background: transparent;
   font-weight: bold;
   padding: 1.5vh 2.5vh;
   border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease;
 }
-.feature-tabs .active {
+.feature-tabs button.active {
   border-color: #5267df;
   color: #5267df;
 }
@@ -201,6 +209,7 @@ img {
   width: 100%;
   max-width: 400px;
 }
+
 @media (min-width: 768px) {
   .feature-content {
     flex-direction: row;
@@ -216,10 +225,10 @@ img {
   }
 }
 
-/* --- Extensions amb divs esglaonats --- */
-.extensions.container {
-  text-align: center;
-}
+/* ------------------------------
+   EXTENSIONS SECTION
+   - Staggered cards + extra spacing for bg-dots.svg
+------------------------------ */
 .extensions .cards {
   display: flex;
   flex-direction: column;
@@ -227,25 +236,38 @@ img {
   margin-top: 4vh;
 }
 .card {
-  background: #fff;
   text-align: center;
   padding: 4vh;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
   transition: transform 0.3s ease;
 }
-.extensions .card:nth-child(1) { transform: translateY(0); }
-.extensions .card:nth-child(2) { transform: translateY(20px); }
-.extensions .card:nth-child(3) { transform: translateY(40px); }
-@media (min-width: 768px) {
-  .extensions .cards { flex-direction: row; justify-content: space-between; }
-  .card { width: 30%; }
+.card:nth-child(1) { transform: translateY(0); }
+.card:nth-child(2) { transform: translateY(20px); }
+.card:nth-child(3) { transform: translateY(40px); }
+
+.card img[alt="decorative dots"] {
+  margin: 4vh 0;
 }
 
-/* --- FAQ Section (sense canvis visuals) --- */
-.faq.container {
+@media (min-width: 768px) {
+  .extensions .cards {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .card {
+    width: 30%;
+  }
+}
+
+/* ------------------------------
+   FAQ SECTION
+   - Keep original interactive style
+------------------------------ */
+.faq {
   margin: auto;
-  width: 50%;
+  width: 90%;
+  max-width: 700px;
   text-align: left;
 }
 .faq details {
@@ -272,23 +294,15 @@ img {
   text-align: center;
   margin-top: 3vh;
 }
-@media (min-width: 768px) {
-  .faq.container {
-    margin: auto;
-    width: 50%;
-  }
-}
 
-/* --- Newsletter Section (vista de la imatge) --- */
+/* ------------------------------
+   NEWSLETTER SECTION
+------------------------------ */
 .newsletter {
   background-color: #5865f2;
   color: white;
   text-align: center;
   padding: 6vh 2vh;
-}
-.newsletter .container {
-  max-width: 500px;
-  margin: 0 auto;
 }
 .newsletter p {
   text-transform: uppercase;
@@ -304,6 +318,8 @@ img {
   display: flex;
   flex-direction: column;
   gap: 2vh;
+  max-width: 500px;
+  margin: 0 auto;
 }
 .newsletter input[type="email"] {
   padding: 2.5vh;
@@ -339,32 +355,66 @@ img {
   }
 }
 
+/* ------------------------------
+   FOOTER SECTION
+   - Mobile-first: column; Desktop: row
+   - Logo left, links center, socials right
+------------------------------ */
 .footer {
   background-color: #242942;
   color: white;
   padding: 4vh 2vh;
 }
 .footer .container {
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  text-align: center;
 }
 .footer nav {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 2vh;
+  width: 100%;
 }
-.footer-links {
+.footer nav .logo {
+  order: 1;
+}
+.footer nav .links {
+  order: 2;
+  display: flex;
+  gap: 2vh;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer nav .social {
+  order: 3;
   display: flex;
   gap: 2vh;
 }
-.footer-links a {
-  color: white;
-  font-weight: 500;
+@media (min-width: 768px) {
+  .footer .container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .footer nav {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  .footer nav .logo {
+    order: 1;
+  }
+  .footer nav .links {
+    order: 2;
+  }
+  .footer nav .social {
+    order: 3;
+    margin-left: auto;
+  }
 }
-.footer-social {
-  display: flex;
-  gap: 1.5vh;
-}
-.footer-social img {
-  height: 24px;
-  cursor: pointer;
-}
+
