@@ -1,4 +1,4 @@
-# 🌐 Vainilla: Versió HTML + CSS + JavaScript (Validada W3C)
+
 
 Aquest branch conté una pàgina web desenvolupada amb HTML5, CSS3 i JavaScript, amb les imatges separades en un directori propi. Tot el codi ha estat validat satisfactòriament amb les eines oficials del **W3C** per garantir una correcta estructura i compatibilitat.
 
