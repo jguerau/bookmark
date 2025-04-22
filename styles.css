@@ -1,0 +1,420 @@
+/* ========== styles-final.css ========== */
+
+/* ------------------------------
+   BASE STYLES (Mobile-First)
+------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #2b2b2b;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4vh 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ------------------------------
+   BUTTONS
+------------------------------ */
+.btn-primary {
+  background-color: #5267df;
+  color: #fff;
+  padding: 1.2em 2em;
+  border-radius: 6px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #4357c7;
+}
+
+.btn-secondary {
+  background-color: #f7f7f7;
+  color: #2b2b2b;
+  padding: 1.2em 2em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-outline {
+  border: 2px solid #5267df;
+  color: #5267df;
+  padding: 0.8em 1.5em;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+.btn-outline:hover {
+  background-color: #5267df;
+  color: #fff;
+}
+
+/* ------------------------------
+   HEADER & NAVIGATION
+   - Mobile-first: hamburger visible, links hidden
+   - Desktop: links visible, hamburger hidden
+------------------------------ */
+.header {
+  padding: 2vh 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  z-index: 1000;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #2b2b2b;
+  border-radius: 2px;
+}
+
+.nav-links {
+  list-style: none;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 1vh 0;
+}
+.nav-links.show {
+  display: flex;
+}
+.nav-links li a {
+  padding: 1vh 0;
+  font-weight: 500;
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+  .nav {
+    flex-wrap: nowrap;
+  }
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    padding: 0;
+  }
+  .nav-links li a {
+    margin: 0 1.5vh;
+  }
+}
+
+/* ------------------------------
+   HERO SECTION
+   - Image left/text right on desktop
+------------------------------ */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4vh;
+}
+.hero-text {
+  max-width: 600px;
+}
+.hero-img img {
+  width: 100%;
+  max-width: 500px;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .hero-text {
+    flex: 1;
+    padding-right: 5vh;
+  }
+  .hero-img {
+    flex: 1;
+  }
+}
+
+/* ------------------------------
+   FEATURES SECTION
+   - Preserve original left/right image structure
+------------------------------ */
+.features {
+  text-align: center;
+}
+.feature-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2vh;
+  margin: 4vh 0;
+}
+.feature-tabs button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  padding: 1.5vh 2.5vh;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.feature-tabs button.active {
+  border-color: #5267df;
+  color: #5267df;
+}
+.feature-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4vh;
+}
+.feature-content img {
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (min-width: 768px) {
+  .feature-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .feature-content img {
+    flex: 1;
+    margin-right: 5vh;
+  }
+  .feature-content div {
+    flex: 1;
+  }
+}
+
+/* ------------------------------
+   EXTENSIONS SECTION
+   - Staggered cards + extra spacing for bg-dots.svg
+------------------------------ */
+.extensions .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  margin-top: 4vh;
+}
+.card {
+  text-align: center;
+  padding: 4vh;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.card:nth-child(1) { transform: translateY(0); }
+.card:nth-child(2) { transform: translateY(20px); }
+.card:nth-child(3) { transform: translateY(40px); }
+
+.card img[alt="decorative dots"] {
+  margin: 4vh 0;
+}
+
+@media (min-width: 768px) {
+  .extensions .cards {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .card {
+    width: 30%;
+  }
+}
+
+/* ------------------------------
+   FAQ SECTION
+   - Keep original interactive style
+------------------------------ */
+.faq {
+  margin: auto;
+  width: 90%;
+  max-width: 700px;
+  text-align: left;
+}
+.faq details {
+  margin: 2vh 0;
+  padding: 2vh 0;
+  border-bottom: 1px solid #ccc;
+}
+.faq details summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+.faq details > summary + * {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.faq details:hover > summary + * {
+  max-height: 500px;
+  opacity: 1;
+  padding-top: 1vh;
+}
+.faq-more-info {
+  text-align: center;
+  margin-top: 3vh;
+}
+
+/* ------------------------------
+   NEWSLETTER SECTION
+------------------------------ */
+.newsletter {
+  background-color: #5865f2;
+  color: white;
+  text-align: center;
+  padding: 6vh 2vh;
+}
+.newsletter p {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 1vh;
+}
+.newsletter h2 {
+  font-size: 2rem;
+  margin-bottom: 3vh;
+}
+.newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.newsletter input[type="email"] {
+  padding: 2.5vh;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+.newsletter button {
+  background-color: #f65f5f;
+  color: white;
+  border: none;
+  padding: 2.5vh;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.newsletter button:hover {
+  background-color: #e04b4b;
+}
+@media (min-width: 768px) {
+  .newsletter form {
+    flex-direction: row;
+  }
+  .newsletter input,
+  .newsletter button {
+    flex: 1;
+    width: auto;
+  }
+  .newsletter button {
+    max-width: 200px;
+  }
+}
+
+/* ------------------------------
+   FOOTER SECTION
+   - Mobile-first: column; Desktop: row
+   - Logo left, links center, socials right
+------------------------------ */
+.footer {
+  background-color: #242942;
+  color: white;
+  padding: 4vh 2vh;
+}
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  text-align: center;
+}
+.footer nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  width: 100%;
+}
+.footer nav .logo {
+  order: 1;
+}
+.footer nav .links {
+  order: 2;
+  display: flex;
+  gap: 2vh;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer nav .social {
+  order: 3;
+  display: flex;
+  gap: 2vh;
+}
+@media (min-width: 768px) {
+  .footer .container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .footer nav {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  .footer nav .logo {
+    order: 1;
+  }
+  .footer nav .links {
+    order: 2;
+  }
+  .footer nav .social {
+    order: 3;
+    margin-left: auto;
+  }
+}
+
